@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import PopularPage from './PopularPage';
 import TrendingPage from './TrendingPage';
@@ -69,17 +68,3 @@ export default class HomePage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
