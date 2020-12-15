@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import WelcomePage from '../pages/WelcomPage';
 import HomePage from '../pages/HomePage';
 
 const Stack = createStackNavigator();
