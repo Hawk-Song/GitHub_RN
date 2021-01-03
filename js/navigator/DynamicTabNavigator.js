@@ -1,5 +1,5 @@
 import {View, Text, TouchableOpacity} from 'react-native';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import PopularPage from '../pages/PopularPage';
 import TrendingPage from '../pages/TrendingPage';
 import FavoritePage from '../pages/FavoritePage';
@@ -8,7 +8,10 @@ import MyPage from '../pages/MyPage';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  createBottomTabNavigator,
+  BottomTabBar,
+} from '@react-navigation/bottom-tabs';
 const TABS = {
   PopularPage: {
     name: 'Hottest',
@@ -51,7 +54,9 @@ class DynamicTabNavigator extends Component {
     PopularPage.name = 'Hottest1';
     return (
       <Tab.Navigator
-        // tabBar={(props) => <MyTabBar {...props} />}
+        tabBar={(props) => (
+          <TabBarComponent theme={this.props.theme} {...props} />
+        )}
         tabBarOptions={{
           activeTintColor: this.activeTintColor,
           inactiveTintColor: this.inactiveTintColor,
@@ -77,25 +82,15 @@ class DynamicTabNavigator extends Component {
   }
 }
 
-class TabBarComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.theme = {
-      tintColor: props.activeTintColor,
-      updateTime: new Date().getTime(),
-    };
+const TabBarComponent = (props) => {
+  // console.log('state: ', props.state);
+  const {routes, index} = props.state;
+  let theme;
+  if (routes[index].params) {
+    theme = routes[index].params.theme;
   }
-
-  render() {
-    const {routes, index} = this.props.navigation.state;
-    if (routes[index].params) {
-      const {theme} = routes[index].params;
-      if (theme && theme.updateTime > this.theme.updateTime) {
-        this.theme = theme;
-      }
-      return undefined;
-    }
-  }
-}
+  const newTintColor = theme ? theme.tintColor : props.activeTintColor;
+  return <BottomTabBar {...props} activeTintColor={newTintColor} />;
+};
 
 export default DynamicTabNavigator;
