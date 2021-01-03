@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-export default class FavoritePage extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Favorite</Text>
-      </View>
-    );
-  }
-}
+const FavoritePage = (props) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>Favorite</Text>
+    </View>
+  );
+};
+export default FavoritePage;
 
 const styles = StyleSheet.create({
   container: {

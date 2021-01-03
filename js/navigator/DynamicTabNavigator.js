@@ -83,7 +83,6 @@ class DynamicTabNavigator extends Component {
 }
 
 const TabBarComponent = (props) => {
-  // console.log('state: ', props.state);
   const {routes, index} = props.state;
   let theme;
   if (routes[index].params) {
