@@ -4,6 +4,18 @@ import {StyleSheet, Text, View} from 'react-native';
 
 const Tab = createMaterialTopTabNavigator();
 class PopularPage extends Component {
+  constructor(props) {
+    super(props);
+    this.tabNames = ['Java', 'Android', 'iOS', 'React', 'React Native', 'PHP'];
+  }
+  _genTabs() {
+    const tabs = {};
+    this.tabNames.forEach((item, index) => {
+      tabs[`tab${index}`] = {
+        screen: props => <PopularPage {...this.props} tabLabel={item}/>
+      }
+    })
+  }
   render() {
     return (
       <Tab.Navigator>
@@ -15,6 +27,9 @@ class PopularPage extends Component {
 }
 
 class PopularTab extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <View style={styles.container}>
